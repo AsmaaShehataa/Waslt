@@ -70,7 +70,7 @@ flutter test integration_test -d <device-id>
 
 ## No-charge development
 
-No paid service, cloud billing account, API credit purchase or payment has been enabled. All external integrations in RuntimeConfig remain disabled. CI is manual-only to avoid automatically consuming runner allowances; do not run hosted CI until free availability has been confirmed.
+No paid service, cloud billing account, API credit purchase or payment has been enabled. All external integrations in RuntimeConfig remain disabled. No automatic CI workflow is enabled. Confirm free runner availability before enabling hosted CI.
 
 ## Remaining before a usable pilot
 
@@ -78,6 +78,6 @@ Run device/release checks; verify the building/gate catalogue; implement account
 
 The backend must enforce actor permissions, exact quote approval, atomic provider acceptance, payment idempotency and audit integrity. Client-side checks are not security boundaries. Do not enter real resident details until account isolation and secure storage are implemented.
 
-## GitHub publishing status
+## Repository status
 
-The connected GitHub integration can read Waslt but its first source write returned HTTP 403, `Resource not accessible by integration`. A browser upload is being attempted separately; do not treat this README as evidence of a successful remote push. The local source archive remains a complete usable checkout.
+The resident booking module was committed to the main branch on 25 November 2026. Source, tests, Android/iOS projects, generated database, dependency lockfile, .gitignore and Flutter version pin are available in this repository.
