@@ -1,3 +1,10 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
+
+plugins {
+    id("org.jetbrains.kotlin.android") apply false
+}
+
 allprojects {
     repositories {
         google()
@@ -14,6 +21,13 @@ rootProject.layout.buildDirectory.value(newBuildDir)
 subprojects {
     val newSubprojectBuildDir: Directory = newBuildDir.dir(project.name)
     project.layout.buildDirectory.value(newSubprojectBuildDir)
+
+    if (name == "pay_android") {
+        // Match this plugin's Kotlin bytecode to its Java 11 target.
+        tasks.withType<KotlinJvmCompile>().configureEach {
+            compilerOptions.jvmTarget.set(JvmTarget.JVM_11)
+        }
+    }
 }
 subprojects {
     project.evaluationDependsOn(":app")
