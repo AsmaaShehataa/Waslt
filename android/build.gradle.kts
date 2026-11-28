@@ -28,6 +28,20 @@ subprojects {
             compilerOptions.jvmTarget.set(JvmTarget.JVM_11)
         }
     }
+
+    if (
+        name == "workmanager_android" &&
+        providers.gradleProperty("android.builtInKotlin").orNull == "false"
+    ) {
+        // Workmanager 0.9.3 assumes AGP 9 always enables built-in Kotlin.
+        // Flutter's compatibility mode disables it, so restore the legacy plugin.
+        pluginManager.withPlugin("com.android.library") {
+            pluginManager.apply("org.jetbrains.kotlin.android")
+            tasks.withType<KotlinJvmCompile>().configureEach {
+                compilerOptions.jvmTarget.set(JvmTarget.JVM_1_8)
+            }
+        }
+    }
 }
 subprojects {
     project.evaluationDependsOn(":app")
